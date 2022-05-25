@@ -81,28 +81,45 @@
                     <div class="your-courses">
                         <div class="course">
                             <img class="course-img" src="assets/pexels-julia-m-cameron-4144294(1).jpg">
-                            <span class="course-name">CMPE372</span>
-                            <span class="course-students">32 Students</span>
+                            <a class="course-name" href="#">CMPE372</a>
+                            <span class="course-students">32 Members</span>
                         </div>
                         <div class="course">
                             <img class="course-img" src="assets/pexels-julia-m-cameron-4144294(1).jpg">
-                            <span class="course-name">CMPE372</span>
-                            <span class="course-students">32 Students</span>
+                            <a class="course-name" href="#">CMPE372</a>
+                            <span class="course-students">32 Members</span>
                         </div>
                         <div class="course">
                             <img class="course-img" src="assets/pexels-julia-m-cameron-4144294(1).jpg">
-                            <span class="course-name">CMPE372</span>
-                            <span class="course-students">32 Students</span>
+                            <a class="course-name" href="#">CMPE372</a>
+                            <span class="course-students">32 Members</span>
                         </div>
                         <div class="course">
                             <img class="course-img" src="assets/pexels-julia-m-cameron-4144294(1).jpg">
-                            <span class="course-name">CMPE372</span>
-                            <span class="course-students">32 Students</span>
+                            <a class="course-name" href="#">CMPE372</a>
+                            <span class="course-students">32 Members</span>
                         </div>
                         <div class="course">
                             <img class="course-img" src="assets/pexels-julia-m-cameron-4144294(1).jpg">
-                            <span class="course-name">CMPE372</span>
-                            <span class="course-students">32 Students</span>
+                            <a class="course-name" href="#">CMPE372</a>
+                            <span class="course-students">32 Members</span>
+                        </div>
+                        <div class="course">
+                            <img class="course-img" src="assets/pexels-julia-m-cameron-4144294(1).jpg">
+                            <a class="course-name" href="#">CMPE372</a>
+                            <span class="course-students">32 Members</span>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="your-courses-area">
+                    <div class="your-courses-text">
+                        <span class="greet-title-text">Upcoming</span>
+                        <span class="greet-text">Tuesday, May 25th</span>
+                    </div>
+                    <div class="calendar-area">
+                        <div class="calendar">
+
                         </div>
                     </div>
                 </div>
