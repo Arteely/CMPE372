@@ -17,8 +17,8 @@
                 </div>
                 <hr class="sidebar-divide">
                 <ul class="side-menu-links">
-                    <li class="side-menu-button">
-                        <a href="#">
+                    <li class="side-menu-button selected">
+                        <a href="index.html">
                             <img class="side-menu-button-image" src="assets/icons/table-columns-solid.svg">
                             <span class="side-menu-button-text">Dashboard</span>
                         </a>
@@ -57,6 +57,9 @@
                         </a>
                     </li>
                 </ul>
+                <div class="navbar-footer">
+                    <span class="navbar-user-text">CASARA-SIS is a platform made as a CMPE372 Project.</span>
+                </div>
             </div>
             <div class="main-content-area">
                 <div class="greet-search-area">
@@ -119,7 +122,8 @@
                     </div>
                     <div class="calendar-area">
                         <div class="calendar">
-
+                            <a class="course-name" href="#">CMPE372</a>
+                            
                         </div>
                     </div>
                 </div>
