@@ -47,6 +47,10 @@
                                 <label for="password" class="form-label">Password</label>
                                 <input id="password" class="form-input-label" type="password" placeholder="Your Password">
                             </div>
+                            <div class="form-input">
+                                <label for="password" class="form-label">Confirm Password</label>
+                                <input id="password" class="form-input-label" type="password" placeholder="Your Password">
+                            </div>
                             <input class="login-button" type="submit" value="Register">
                             <div class="spacer"></div>
                             <p class="register-text">Already have an account? <a class="forgot-password-link" href="login.php">Login Here</a></p>
