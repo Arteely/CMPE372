@@ -1,21 +1,3 @@
-
-<?php
-/* Database credentials. Assuming you are running MySQL
-server with default setting (user 'root' with no password) */
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
-define('DB_NAME', 'test');
- 
-/* Attempt to connect to MySQL database */
-$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
- 
-// Check connection
-if($link === false){
-    die("ERROR: Could not connect. " . mysqli_connect_error());
-}
-?>
-
 <html lang="en-gb">
     <head>
         <title>CASARA SIS Portal</title>
@@ -49,12 +31,12 @@ if($link === false){
                                     <input type="checkbox" checked>
                                 </label>
                                 <span class="forgot-password">
-                                    <a class="forgot-password-link" href="index.html">Forgot Password?</a>
+                                    <a class="forgot-password-link" href="index.php">Forgot Password?</a>
                                 </span>
                             </div>
                             <input class="login-button" type="submit" value="Log In">
                             <div class="spacer"></div>
-                            <p class="register-text">Don't have an account? <a class="forgot-password-link" href="register.html">Register Here</a></p>
+                            <p class="register-text">Don't have an account? <a class="forgot-password-link" href="register.php">Register Here</a></p>
                         </form>
                     </div>
                 </div>

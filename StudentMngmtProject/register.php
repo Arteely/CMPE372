@@ -46,7 +46,7 @@
                             </div>
                             <input class="login-button" type="submit" value="Register">
                             <div class="spacer"></div>
-                            <p class="register-text">Already have an account? <a class="forgot-password-link" href="login.html">Login Here</a></p>
+                            <p class="register-text">Already have an account? <a class="forgot-password-link" href="login.php">Login Here</a></p>
                         </form>
                     </div>
                 </div>
