@@ -1,3 +1,5 @@
+<?php include('config.php') ?>
+
 <html lang="en-gb">
     <head>
         <title>CASARA SIS Portal</title>
@@ -23,7 +25,8 @@
                         <img class="main-title" src="assets/casara-logo-black-selfmade.png">
                         <h2 class="sub-title">Create an account</h2>
                         <p class="sub-text">Let's get you started!</p>
-                        <form action="#" method="post">
+                        <form action="register.php" method="post">
+                            <?php include('form-errors.php'); ?>
                             <div class="form-input">
                                 <label for="name" class="form-label">Name</label>
                                 <input id="name" class="form-input-label" type="text" placeholder="John">
@@ -33,8 +36,8 @@
                                 <input id="surname" class="form-input-label" type="text" placeholder="Doe">
                             </div>
                             <div class="form-input">
-                                <label for="student-id" class="form-label">Student/Faculty ID</label>
-                                <input id="student-id" class="form-input-label" type="number" placeholder="12345678">
+                                <label for="faculty_id" class="form-label">Student/Faculty ID</label>
+                                <input id="faculty_id" class="form-input-label" type="number" placeholder="12345678">
                             </div>
                             <div class="form-input">
                                 <label for="username" class="form-label">Username</label>
