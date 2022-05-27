@@ -11,6 +11,11 @@
   	unset($_SESSION['username']);
   	header("location: login.php");
   }
+
+  $link = mysqli_connect('localhost', 'root', '', 'casara_sis');
+  $username = mysqli_real_escape_string($link , $_SESSION['username']);
+  $query = mysqli_query($link , "SELECT name,surname FROM users WHERE username='$username'");
+  $user = mysqli_fetch_assoc($query);
 ?>
 
 <html lang="en-gb">
@@ -28,7 +33,7 @@
                 <div class="navbar-user">
                     <img src="assets/casara-logo-white-selfmade.png">
 
-                    <span class="navbar-user-text">Welcome! Artem Artemyev<?php echo $_SESSION["name"]; ?></span>
+                    <span class="navbar-user-text">Welcome! <?php echo "{$user['name']}" ?></span>
                     <span class="navbar-user-text">Faculty of Business</span>
                 </div>
                 <hr class="sidebar-divide">
@@ -80,7 +85,7 @@
             <div class="main-content-area">
                 <div class="greet-search-area">
                     <div class="user-greet">
-                     <span class="greet-title-text">Artem Artemyev<?php echo $_SESSION['name']; ?></span>
+                     <span class="greet-title-text"><?php echo "{$user['name']} {$user['surname']}" ?></span>
                      <span class="greet-text">Good Afternoon, you have no upcoming lessons today!</span>
                     </div>
                     <div class="search-bar">
