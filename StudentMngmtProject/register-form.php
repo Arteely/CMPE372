@@ -1,10 +1,7 @@
 <?php
+session_start();
 
 $link = mysqli_connect('localhost', 'root', '', 'casara_sis');
- 
-if($link === false){
-    die("ERROR: Could not connect. " . mysqli_connect_error());
-}
 
 $name = "";
 $surname = "";
@@ -14,7 +11,7 @@ $password_confirmation = "";
 $faculty_id = "";
 $error_array = array();
 
-if (isset($_POST['reg_user'])) {
+if (isset($_POST['register_user'])) {
 
 $name = mysqli_real_escape_string($link, $_POST['name']);
 $surname = mysqli_real_escape_string($link, $_POST['surname']);
@@ -34,7 +31,7 @@ if (empty($faculty_id)) {
 if ($password != $password_confirmation) {
 	array_push($error_array, "Passwords do not match, please check again"); }
 
-$dupe_check = mysqli_query($link, "SELECT * FROM casara_sis WHERE username='$username' LIMIT 1");
+$dupe_check = mysqli_query($link, "SELECT * FROM users WHERE username='$username' LIMIT 1");
 $user = mysqli_fetch_assoc($dupe_check);
 
 if ($user) {
@@ -44,10 +41,10 @@ if ($user) {
   }
 
   if (count($error_array) == 0) {
-    $password = md5($password_confirmation);
+    $encrypted_password = md5($password);
 
-    $query = "INSERT INTO casara_sis (username, name, surname, faculty_id, password) 
-              VALUES('$username', '$name', '$surname', '$faculty_id', '$password')";
+    $query = "INSERT INTO users (username, name, surname, faculty_id, password) 
+              VALUES('$username', '$name', '$surname', '$faculty_id', '$encrypted_password')";
     mysqli_query($link, $query);
     $_SESSION['username'] = $username;
     $_SESSION['success'] = "You are now logged in";

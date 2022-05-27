@@ -1,4 +1,4 @@
-<?php include('config.php') ?>
+<?php include('register-form.php') ?>
 
 <html lang="en-gb">
     <head>

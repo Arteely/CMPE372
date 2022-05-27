@@ -53,6 +53,18 @@ p{
     width: 100%;
 }
 
+.error-block{
+    background-color:#f4f4f4;
+    border-radius: 25px;
+    margin: 1rem;
+}
+
+.error-text{
+    font-size: 12px;
+    font-weight: 700;
+    color: #ed4337;
+}
+
 .login-flex-container{
     display: flex;
     align-items: center;
