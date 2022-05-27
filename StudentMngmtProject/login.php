@@ -1,3 +1,4 @@
+
 <html lang="en-gb">
     <head>
         <title>CASARA SIS Portal</title>
@@ -16,7 +17,8 @@
                         <img class="main-title" src="assets/casara-logo-black-selfmade.png">
                         <h2 class="sub-title">Log in to your account</h2>
                         <p class="sub-text">Please login to continue to your account</p>
-                        <form action="#" method="post">
+                        <form action="login.php" method="post">
+                            <?php include('form-errors.php'); ?>
                             <div class="form-input">
                                 <label for="username" class="form-label">Username</label>
                                 <input id="username" class="form-input-label" type="email" placeholder="email@example.com">
@@ -34,7 +36,7 @@
                                     <a class="forgot-password-link" href="index.php">Forgot Password?</a>
                                 </span>
                             </div>
-                            <input class="login-button" type="submit" value="Log In">
+                            <input class="login-button" type="submit" name="login_user" value="Log In">
                             <div class="spacer"></div>
                             <p class="register-text">Don't have an account? <a class="forgot-password-link" href="register.php">Register Here</a></p>
                         </form>

@@ -1,15 +1,17 @@
 <?php
 session_start();
 
-$link = mysqli_connect('localhost', 'root', '', 'casara_sis');
-
 $name = "";
 $surname = "";
 $username = "";
-$password = "";
-$password_confirmation = "";
 $faculty_id = "";
 $error_array = array();
+
+$link = mysqli_connect('localhost', 'root', '', 'casara_sis');
+
+if($link === false){
+    array_push($error_array, "ERROR: Could not connect to " . mysqli_connect_error());
+}
 
 if (isset($_POST['register_user'])) {
 
@@ -43,12 +45,37 @@ if ($user) {
   if (count($error_array) == 0) {
     $encrypted_password = md5($password);
 
-    $query = "INSERT INTO users (username, name, surname, faculty_id, password) 
-              VALUES('$username', '$name', '$surname', '$faculty_id', '$encrypted_password')";
+    $query = "INSERT INTO users (name, surname, username, faculty_id, password) 
+        VALUES('$name', '$surname', '$username', '$faculty_id', '$encrypted_password')";
     mysqli_query($link, $query);
     $_SESSION['username'] = $username;
     $_SESSION['success'] = "You are now logged in";
     header('location: index.php');
     }
 }
+
+if (isset($_POST['login_user'])) {
+    $username = mysqli_real_escape_string($link, $_POST['username']);
+    $password = mysqli_real_escape_string($link, $_POST['password']);
+  
+    if (empty($username)) {
+        array_push($error_array, "Please enter a username");
+    }
+    if (empty($password)) {
+        array_push($error_array, "Please enter a password");
+    }
+  
+    if (count($error_array) == 0) {
+        $password = md5($password);
+        $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+        $results = mysqli_query($link, $query);
+        if (mysqli_num_rows($results) == 1) {
+          $_SESSION['username'] = $username;
+          $_SESSION['success'] = "You are now logged in";
+          header('location: index.php');
+        }else {
+            array_push($error_array, "Wrong E-Mail or Password");
+        }
+    }
+  }
 ?>
