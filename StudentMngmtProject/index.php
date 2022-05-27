@@ -14,7 +14,7 @@
 
   $link = mysqli_connect('localhost', 'root', '', 'casara_sis');
   $query = mysqli_query($link , "SELECT name,surname FROM users WHERE username={$_SESSION['username']}");
-  $user = mysqli_fetch_assoc($query):
+  $user = mysqli_fetch_assoc($query);
 ?>
 
 <html lang="en-gb">
