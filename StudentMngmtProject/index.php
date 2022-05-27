@@ -13,7 +13,8 @@
   }
 
   $link = mysqli_connect('localhost', 'root', '', 'casara_sis');
-  $query = mysqli_query($link , "SELECT name,surname FROM users WHERE username={$_SESSION['username']}");
+  $username = mysqli_real_escape_string($link , $_SESSION['username']);
+  $query = mysqli_query($link , "SELECT name,surname FROM users WHERE username='$username'");
   $user = mysqli_fetch_assoc($query);
 ?>
 
