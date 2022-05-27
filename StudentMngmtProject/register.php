@@ -29,29 +29,29 @@
                             <?php include('form-errors.php'); ?>
                             <div class="form-input">
                                 <label for="name" class="form-label">Name</label>
-                                <input id="name" class="form-input-label" type="text" placeholder="John">
+                                <input name="name" class="form-input-label" type="text" placeholder="John">
                             </div>
                             <div class="form-input">
                                 <label for="surname" class="form-label">Surname</label>
-                                <input id="surname" class="form-input-label" type="text" placeholder="Doe">
+                                <input name="surname" class="form-input-label" type="text" placeholder="Doe">
                             </div>
                             <div class="form-input">
                                 <label for="faculty_id" class="form-label">Student/Faculty ID</label>
-                                <input id="faculty_id" class="form-input-label" type="number" placeholder="12345678">
+                                <input name="faculty_id" class="form-input-label" type="number" placeholder="12345678">
                             </div>
                             <div class="form-input">
-                                <label for="username" class="form-label">Username</label>
-                                <input id="username" class="form-input-label" type="email" placeholder="email@example.com">
+                                <label for="username" class="form-label">E-Mail</label>
+                                <input name="username" class="form-input-label" type="email" placeholder="email@example.com">
                             </div>
                             <div class="form-input">
                                 <label for="password" class="form-label">Password</label>
-                                <input id="password" class="form-input-label" type="password" placeholder="Your Password">
+                                <input name="password" class="form-input-label" type="password" placeholder="Your Password">
                             </div>
                             <div class="form-input">
                                 <label for="password" class="form-label">Confirm Password</label>
-                                <input id="password" class="form-input-label" type="password" placeholder="Your Password">
+                                <input name="password_confirmation" class="form-input-label" type="password" placeholder="Your Password">
                             </div>
-                            <input class="login-button" type="submit" value="Register">
+                            <input class="login-button" type="submit" value="Register" name="register_user">
                             <div class="spacer"></div>
                             <p class="register-text">Already have an account? <a class="forgot-password-link" href="login.php">Login Here</a></p>
                         </form>
