@@ -1,3 +1,18 @@
+<?php 
+  session_start(); 
+
+  if (!isset($_SESSION['username'])) {
+  	$_SESSION['msg'] = "You must log in first";
+  	header('location: login.php');
+    }
+
+  if (isset($_GET['logout'])) {
+  	session_destroy();
+  	unset($_SESSION['username']);
+  	header("location: login.php");
+  }
+?>
+
 <html lang="en-gb">
     <head>
         <title>CASARA SIS</title>
@@ -12,7 +27,8 @@
             <div class="side-menu">
                 <div class="navbar-user">
                     <img src="assets/casara-logo-white-selfmade.png">
-                    <span class="navbar-user-text">Welcome! Artem Artemyev</span>
+
+                    <span class="navbar-user-text">Welcome! Artem Artemyev<?php echo $_SESSION["name"]; ?></span>
                     <span class="navbar-user-text">Faculty of Business</span>
                 </div>
                 <hr class="sidebar-divide">
@@ -51,7 +67,7 @@
                         </a>
                     </li>
                     <li class="side-menu-button">
-                        <a href="login.php">
+                        <a href="index.php?logout='1'">
                             <img class="side-menu-button-image" src="assets/icons/arrow-right-from-bracket-solid.svg">
                             <span class="side-menu-button-text">Log Out</span>
                         </a>
@@ -64,7 +80,7 @@
             <div class="main-content-area">
                 <div class="greet-search-area">
                     <div class="user-greet">
-                     <span class="greet-title-text">Hi! Artem Artemyev</span>
+                     <span class="greet-title-text">Artem Artemyev<?php echo $_SESSION['name']; ?></span>
                      <span class="greet-text">Good Afternoon, you have no upcoming lessons today!</span>
                     </div>
                     <div class="search-bar">

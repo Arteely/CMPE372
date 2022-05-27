@@ -73,8 +73,10 @@ if (isset($_POST['login_user'])) {
           $_SESSION['username'] = $username;
           $_SESSION['success'] = "You are now logged in";
           header('location: index.php');
-        }else {
-            array_push($error_array, "Wrong E-Mail or Password");
+        }
+        
+        else {
+            array_push($error_array, "Wrong E-Mail or Password"); 
         }
     }
   }
