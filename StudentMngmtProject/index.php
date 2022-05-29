@@ -12,10 +12,12 @@
   	header("location: login.php");
   }
 
-  $link = mysqli_connect('localhost', 'root', '', 'casara_sis');
-  $username = mysqli_real_escape_string($link , $_SESSION['username']);
-  $query = mysqli_query($link , "SELECT name,surname FROM users WHERE username='$username'");
+  require_once('connect.php');
+  $username = mysqli_real_escape_string($db_cxn , $_SESSION['username']);
+  $query = mysqli_query($db_cxn , "SELECT * FROM users WHERE username='$username'");
   $user = mysqli_fetch_assoc($query);
+  $query = mysqli_query($db_cxn , "SELECT * FROM courses WHERE teacher_id='{$user['id']}'");
+  $courses = mysqli_fetch_all($query , MYSQLI_ASSOC);
 ?>
 
 <html lang="en-gb">
@@ -103,36 +105,13 @@
                         <span class="greet-text">Take a look at the lessons you have.</span>
                     </div>
                     <div class="your-courses">
+                        <?php foreach($courses as $c): ?>
                         <div class="course">
                             <img class="course-img" src="assets/pexels-julia-m-cameron-4144294(1).jpg">
-                            <a class="course-name" href="#">CMPE372</a>
+                            <a class="course-name" href="#"><?php echo "{$c['name']}" ?></a>
                             <span class="course-students">31 Members</span>
                         </div>
-                        <div class="course">
-                            <img class="course-img" src="assets/pexels-julia-m-cameron-4144294(1).jpg">
-                            <a class="course-name" href="#">CMPE372</a>
-                            <span class="course-students">32 Members</span>
-                        </div>
-                        <div class="course">
-                            <img class="course-img" src="assets/pexels-julia-m-cameron-4144294(1).jpg">
-                            <a class="course-name" href="#">CMPE372</a>
-                            <span class="course-students">32 Members</span>
-                        </div>
-                        <div class="course">
-                            <img class="course-img" src="assets/pexels-julia-m-cameron-4144294(1).jpg">
-                            <a class="course-name" href="#">CMPE372</a>
-                            <span class="course-students">32 Members</span>
-                        </div>
-                        <div class="course">
-                            <img class="course-img" src="assets/pexels-julia-m-cameron-4144294(1).jpg">
-                            <a class="course-name" href="#">CMPE372</a>
-                            <span class="course-students">32 Members</span>
-                        </div>
-                        <div class="course">
-                            <img class="course-img" src="assets/pexels-julia-m-cameron-4144294(1).jpg">
-                            <a class="course-name" href="#">CMPE372</a>
-                            <span class="course-students">32 Members</span>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
                 <hr>
