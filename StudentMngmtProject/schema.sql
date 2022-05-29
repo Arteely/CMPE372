@@ -17,3 +17,17 @@ CREATE TABLE courses(
     PRIMARY KEY(id),
     FOREIGN KEY(teacher_id) REFERENCES users(id)
 );
+CREATE TABLE students(
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    surname VARCHAR(255) NOT NULL UNIQUE,
+    student_id INTEGER NOT NULL,
+    PRIMARY KEY(id)
+);
+CREATE TABLE students_courses(
+    course_id INTEGER NOT NULL,
+    student_id INTEGER NOT NULL,
+    PRIMARY KEY(course_id , student_id),
+    FOREIGN KEY(course_id) REFERENCES courses(id),
+    FOREIGN KEY(student_id) REFERENCES students(id)
+);

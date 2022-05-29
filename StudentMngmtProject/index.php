@@ -18,6 +18,11 @@
   $user = mysqli_fetch_assoc($query);
   $query = mysqli_query($db_cxn , "SELECT * FROM courses WHERE teacher_id='{$user['id']}'");
   $courses = mysqli_fetch_all($query , MYSQLI_ASSOC);
+  foreach($courses as &$c){
+      $query = mysqli_query($db_cxn , "SELECT * FROM students_courses WHERE course_id='{$c['id']}'");
+      $students = mysqli_fetch_all($query , MYSQLI_ASSOC);
+      $c['students'] = $students;
+  }
 ?>
 
 <html lang="en-gb">
@@ -41,7 +46,7 @@
                 <hr class="sidebar-divide">
                 <ul class="side-menu-links">
                     <li class="side-menu-button selected">
-                        <a href="index.html">
+                        <a href="index.php">
                             <img class="side-menu-button-image" src="assets/icons/table-columns-solid.svg">
                             <span class="side-menu-button-text">Dashboard</span>
                         </a>
@@ -106,10 +111,11 @@
                     </div>
                     <div class="your-courses">
                         <?php foreach($courses as $c): ?>
+                        <?php $count = count($c['students']); ?>
                         <div class="course">
                             <img class="course-img" src="assets/pexels-julia-m-cameron-4144294(1).jpg">
                             <a class="course-name" href="#"><?php echo "{$c['name']}" ?></a>
-                            <span class="course-students">31 Members</span>
+                            <span class="course-students"><?php echo "$count Members"?></span>
                         </div>
                         <?php endforeach; ?>
                     </div>
