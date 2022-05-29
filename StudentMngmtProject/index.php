@@ -12,9 +12,9 @@
   	header("location: login.php");
   }
 
-  $link = mysqli_connect('localhost', 'root', '', 'casara_sis');
-  $username = mysqli_real_escape_string($link , $_SESSION['username']);
-  $query = mysqli_query($link , "SELECT name,surname FROM users WHERE username='$username'");
+  require_once('connect.php');
+  $username = mysqli_real_escape_string($db_cxn , $_SESSION['username']);
+  $query = mysqli_query($db_cxn , "SELECT name,surname FROM users WHERE username='$username'");
   $user = mysqli_fetch_assoc($query);
 ?>
 
