@@ -124,7 +124,7 @@
                 <div class="your-courses-area">
                     <div class="your-courses-text">
                         <span class="greet-title-text">Upcoming</span>
-                        <span class="greet-text">Tuesday, May 25th</span>
+                        <span class="greet-text"><?php echo date('l, F jS')?></span>
                     </div>
                     <div class="calendar-area">
                         <div class="calendar">
@@ -139,6 +139,37 @@
                             <span class="course-students">32 Members</span><br>
                             <span class="course-students">Zoom</span>
                         </div>
+                        <div class="calendar">
+                            <a class="course-name" href="#">CMPE372</a><br>
+                            <span class="course-students">10:30 - 11:30</span>
+                            <span class="course-students">32 Members</span><br>
+                            <span class="course-students">Zoom</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-container">
+                    <div class="footer-area">
+                         <img src="assets/casara-logo-white-selfmade.png">
+                    </div>
+                    <div class="footer-area">
+                        <ul class="footer-links">
+                            <li class="footer-link">
+                                <a href="#">Dashboard</a>
+                            </li>
+                            <li class="footer-link">
+                                <a href="#">Lessons</a>
+                            </li>
+                            <li class="footer-link">
+                                <a href="#">Students</a>
+                            </li>
+                            <li class="footer-link">
+                                <a href="#">Announcements</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-area">
+                    <span>You are logged in as: <strong><?php echo "{$user['name']} {$user['surname']}" ?></strong></span><br>
+                    <span class="footer-link"><a href="index.php?logout='1'">Log Out</a></span>
                     </div>
                 </div>
             </div>
