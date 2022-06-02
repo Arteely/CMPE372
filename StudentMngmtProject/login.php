@@ -22,11 +22,11 @@
                             <?php include('includes/form-errors.php'); ?>
                             <div class="form-input">
                                 <label for="username" class="form-label">Username</label>
-                                <input name="username" class="form-input-label" type="email" placeholder="email@example.com">
+                                <input name="username" class="form-input-label" type="email" placeholder="email@example.com" required>
                             </div>
                             <div class="form-input">
                                 <label for="password" class="form-label">Password</label>
-                                <input name="password" class="form-input-label" type="password" placeholder="Your Password">
+                                <input name="password" class="form-input-label" type="password" placeholder="Your Password" required>
                             </div>
                             <div class="login-small-flex-container">
                                 <label class="remember-checkbox">

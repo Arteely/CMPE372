@@ -5,8 +5,8 @@
 
 body{
     background-color: #f4f4f4;
-    background-image: linear-gradient(62deg, #f4f4f4 0%, #e4e4e4 100%);   
-    margin: 0; 
+    background-image: linear-gradient(62deg, #f4f4f4 0%, #e4e4e4 100%);
+    margin: 0;
 }
 
 p{
@@ -221,7 +221,7 @@ input[type=number] {
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     height: 100vh;
-    } 
+    }
 /* SEARCHBAR CSS*/
 
 .searchbar-container {
@@ -260,7 +260,7 @@ input[type=number] {
 
 .main-content-container {
     grid-area: 2 / 2 / 6 / 6;
-} 
+}
 
 /* NAVBAR CSS */
 
