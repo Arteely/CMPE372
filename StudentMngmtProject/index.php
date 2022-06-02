@@ -12,7 +12,7 @@
   	header("location: login.php");
   }
 
-  require_once('connect.php');
+  require_once('includes/connect.php');
   $username = mysqli_real_escape_string($db_cxn , $_SESSION['username']);
   $query = mysqli_query($db_cxn , "SELECT * FROM users WHERE username='$username'");
   $user = mysqli_fetch_assoc($query);

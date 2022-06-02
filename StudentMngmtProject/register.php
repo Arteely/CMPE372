@@ -1,4 +1,4 @@
-<?php include('register-form.php') ?>
+<?php include('includes/register-form.php') ?>
 
 <html lang="en-gb">
     <head>
@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="login.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;700&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;700&display=swap" rel="stylesheet">
         <link rel="icon" href="assets/favicon.ico">
     </head>
     <body>
@@ -26,7 +26,7 @@
                         <h2 class="sub-title">Create an account</h2>
                         <p class="sub-text">Let's get you started!</p>
                         <form action="register.php" method="post">
-                            <?php include('form-errors.php'); ?>
+                            <?php include('includes/form-errors.php'); ?>
                             <div class="form-input">
                                 <label for="name" class="form-label">Name</label>
                                 <input name="name" class="form-input-label" type="text" placeholder="John">
