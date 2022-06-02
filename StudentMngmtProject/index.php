@@ -1,21 +1,18 @@
 <?php
   session_start();
 
-  if (!isset($_SESSION['username'])) {
-  	$_SESSION['msg'] = "You must log in first";
+  if (!isset($_SESSION['user'])) {
   	header('location: login.php');
     }
 
   if (isset($_GET['logout'])) {
   	session_destroy();
-  	unset($_SESSION['username']);
+    unset($_SESSION['user']);
   	header("location: login.php");
   }
 
   require_once('includes/connect.php');
-  $username = mysqli_real_escape_string($db_cxn , $_SESSION['username']);
-  $query = mysqli_query($db_cxn , "SELECT * FROM users WHERE username='$username'");
-  $user = mysqli_fetch_assoc($query);
+  $user = $_SESSION['user'];
   $query = mysqli_query($db_cxn , "SELECT * FROM courses WHERE teacher_id='{$user['id']}'");
   $courses = mysqli_fetch_all($query , MYSQLI_ASSOC);
   foreach($courses as &$c){
