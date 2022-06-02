@@ -269,16 +269,18 @@ hr{
 .footer-container {
     display: flex;
     gap: 1.5rem;
-    max-height: 10rem;
+    height: 4.5rem;
     background-color:#252525;
     border-radius: 0 0 25px 25px;
-    justify-content:space-around;
+    justify-content: space-around;
     align-items: center;
     padding: 1rem 1rem 0.75rem 1rem;
 }
 
 .footer-area {
     flex: 1;
+    height: 100%;
+    display: flex;
 }
 
 .footer-area span{
@@ -288,14 +290,16 @@ hr{
 }
 
 .footer-area img{
-    height: 100%;
-    width: 100%;
+    max-width:100%;
+    max-height:100%;
+    width: auto;
 }
 
 .footer-links{
     display: flex;
     gap: 1.2rem;
     justify-content: center;
+    margin: auto;
 }
 
 .footer-link{
@@ -313,6 +317,10 @@ hr{
     color: #e4e4e4;
 }
 
-.text-right {
+.flex-right {
+    justify-content: flex-end;
+}
+
+.footer-logout {
     text-align: right;
 }

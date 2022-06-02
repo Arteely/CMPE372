@@ -169,9 +169,11 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="footer-area text-right">
-                        <span>You are logged in as: <strong><?php echo "{$user['name']} {$user['surname']}" ?></strong></span><br>
-                        <span class="footer-link"><a href="index.php?logout='1'">Log Out</a></span>
+                    <div class="footer-area flex-right">
+                        <div class="footer-logout">
+                            <span>You are logged in as: <strong><?php echo "{$user['name']} {$user['surname']}" ?></strong></span><br>
+                            <span class="footer-link"><a href="index.php?logout='1'">Log Out</a></span>
+                        </div>
                     </div>
                 </div>
             </div>
