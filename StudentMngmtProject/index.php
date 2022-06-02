@@ -147,6 +147,7 @@
                         </div>
                     </div>
                 </div>
+                <!--
                 <div class="footer-container">
                     <div class="footer-area">
                          <img src="assets/casara-logo-white-selfmade.png">
@@ -172,6 +173,7 @@
                     <span class="footer-link"><a href="index.php?logout='1'">Log Out</a></span>
                     </div>
                 </div>
+                        -->
             </div>
         </div>
     </body>
