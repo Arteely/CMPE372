@@ -1,18 +1,23 @@
 <?php
-  session_start();
+    session_start();
 
-  if (!isset($_SESSION['user'])) {
-  	header('location: login.php');
+    if (!isset($_SESSION['user'])) {
+    header('location: login.php');
     }
 
-  if (isset($_GET['logout'])) {
-  	session_destroy();
+    if (isset($_GET['logout'])) {
+    session_destroy();
     unset($_SESSION['user']);
-  	header("location: login.php");
-  }
+    header("location: login.php");
+    }
 
-  require_once('includes/connect.php');
-  $USER = $_SESSION['user'];
+    require_once('includes/connect.php');
+    $USER = $_SESSION['user'];
+
+    $page = $_GET['page'];
+    $page_path = "pages/$page.php";
+    if(!isset($_GET['page']) || !file_exists($page_path))
+        header("location: index.php?page=dashboard");
 ?>
 
 <html lang="en-gb">
@@ -35,25 +40,25 @@
                 </div>
                 <hr class="sidebar-divide">
                 <ul class="side-menu-links">
-                    <li class="side-menu-button selected">
-                        <a href="index.php">
+                    <li class="side-menu-button <?php echo $page == "dashboard" ? "selected" : ""; ?>">
+                        <a href="index.php?page=dashboard">
                             <img class="side-menu-button-image" src="assets/icons/table-columns-solid.svg">
                             <span class="side-menu-button-text">Dashboard</span>
                         </a>
                     </li>
-                    <li class="side-menu-button">
+                    <li class="side-menu-button <?php echo $page == "lessons" ? "selected" : ""; ?>">
                         <a href="#">
                             <img class="side-menu-button-image" src="assets/icons/check-solid.svg">
                             <span class="side-menu-button-text">Lessons</span>
                         </a>
                     </li>
-                    <li class="side-menu-button">
-                        <a href="#">
+                    <li class="side-menu-button <?php echo $page == "students" ? "selected" : ""; ?>">
+                        <a href="index.php?page=students">
                             <img class="side-menu-button-image" src="assets/icons/users-solid.svg">
                             <span class="side-menu-button-text">Students</span>
                         </a>
                     </li>
-                    <li class="side-menu-button">
+                    <li class="side-menu-button <?php echo $page == "settings" ? "selected" : ""; ?>">
                         <a href="#">
                             <img class="side-menu-button-image" src="assets/icons/sliders-solid.svg">
                             <span class="side-menu-button-text">Settings</span>
@@ -62,7 +67,7 @@
                 </ul>
                     <hr class="sidebar-divide">
                 <ul class="side-menu-links">
-                    <li class="side-menu-button">
+                    <li class="side-menu-button <?php echo $page == "announcements" ? "selected" : ""; ?>">
                         <a href="#">
                             <img class="side-menu-button-image" src="assets/icons/bullhorn-solid.svg">
                             <span class="side-menu-button-text">Announcements</span>
@@ -80,13 +85,34 @@
                 </div>
             </div>
             <div class="main-content-area">
-                <?php
-                    $page_target = "pages/{$_GET['page']}.php";
-                    if(!file_exists($page_target))
-                        header("location: index.php?page=dashboard");
-
-                    require_once($page_target);
-                ?>
+                <?php require_once($page_path); ?>
+                <div class="footer-container">
+                    <div class="footer-area">
+                            <img src="assets/casara-logo-white-selfmade.png">
+                    </div>
+                    <div class="footer-area">
+                        <ul class="footer-links">
+                            <li class="footer-link">
+                                <a href="#">Dashboard</a>
+                            </li>
+                            <li class="footer-link">
+                                <a href="#">Lessons</a>
+                            </li>
+                            <li class="footer-link">
+                                <a href="#">Students</a>
+                            </li>
+                            <li class="footer-link">
+                                <a href="#">Announcements</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-area flex-right">
+                        <div class="footer-logout">
+                            <span>You are logged in as: <strong><?php echo "{$USER['name']} {$USER['surname']}" ?></strong></span><br>
+                            <span class="footer-link"><a href="index.php?logout='1'">Log Out</a></span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
