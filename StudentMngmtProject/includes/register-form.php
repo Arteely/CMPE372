@@ -2,7 +2,7 @@
 session_start();
 
 if(isset($_SESSION['user'])) {
-    header('location: index.php');
+    header('location: index.php?page=dashboard');
 }
 
 $error_array = array();
@@ -109,7 +109,7 @@ else if (isset($_POST['login_user'])) {
 
 if ($user != null) {
     $_SESSION['user'] = $user;
-    header("location: index.php");
+    header("location: index.php?page=dashboard");
 }
 
 done:;
