@@ -1,5 +1,5 @@
-<?php 
-  session_start(); 
+<?php
+  session_start();
 
   if (!isset($_SESSION['username'])) {
   	$_SESSION['msg'] = "You must log in first";
@@ -90,64 +90,65 @@
                 </div>
             </div>
             <div class="main-content-area">
-                <div class="greet-search-area">
-                    <div class="user-greet">
-                     <span class="greet-title-text"><?php echo "{$user['name']} {$user['surname']}" ?></span>
-                     <span class="greet-text">Good Afternoon, you have no upcoming lessons today!</span>
+                <div class="main-content-body">
+                    <div class="greet-search-area">
+                        <div class="user-greet">
+                        <span class="greet-title-text"><?php echo "{$user['name']} {$user['surname']}" ?></span>
+                        <span class="greet-text">Good Afternoon, you have no upcoming lessons today!</span>
+                        </div>
+                        <div class="search-bar">
+                            <img class="search-icon" src="assets/icons/magnifying-glass-solid.svg">
+                            <input class="search-input" type="text" placeholder="Search courses or anything">
+                        </div>
+                        <div class="notifications-bar">
+                            <a href="#"><img class="notification-icon" src="assets/icons/bell-solid.svg"></a>
+                        </div>
                     </div>
-                    <div class="search-bar">
-                        <img class="search-icon" src="assets/icons/magnifying-glass-solid.svg">
-                        <input class="search-input" type="text" placeholder="Search courses or anything">
+                    <hr>
+                    <div class="your-courses-area">
+                        <div class="your-courses-text">
+                            <span class="greet-title-text">Your Courses</span>
+                            <span class="greet-text">Take a look at the lessons you have.</span>
+                        </div>
+                        <div class="your-courses">
+                            <?php foreach($courses as $c): ?>
+                            <?php $count = count($c['students']); ?>
+                            <div class="course">
+                                <img class="course-img" src="assets/pexels-julia-m-cameron-4144294(1).jpg">
+                                <a class="course-name" href="#"><?php echo "{$c['name']}" ?></a>
+                                <span class="course-students"><?php echo "$count Members"?></span>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
-                    <div class="notifications-bar">
-                        <a href="#"><img class="notification-icon" src="assets/icons/bell-solid.svg"></a>
+                    <hr>
+                    <div class="your-courses-area">
+                        <div class="your-courses-text">
+                            <span class="greet-title-text">Upcoming</span>
+                            <span class="greet-text"><?php echo date('l, F jS')?></span>
+                        </div>
+                        <div class="calendar-area">
+                            <div class="calendar">
+                                <a class="course-name" href="#">CMPE372</a><br>
+                                <span class="course-students">10:30 - 11:30</span>
+                                <span class="course-students">32 Members</span><br>
+                                <span class="course-students">Zoom</span>
+                            </div>
+                            <div class="calendar">
+                                <a class="course-name" href="#">CMPE372</a><br>
+                                <span class="course-students">10:30 - 11:30</span>
+                                <span class="course-students">32 Members</span><br>
+                                <span class="course-students">Zoom</span>
+                            </div>
+                            <div class="calendar">
+                                <a class="course-name" href="#">CMPE372</a><br>
+                                <span class="course-students">10:30 - 11:30</span>
+                                <span class="course-students">32 Members</span><br>
+                                <span class="course-students">Zoom</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <hr>
-                <div class="your-courses-area">
-                    <div class="your-courses-text">
-                        <span class="greet-title-text">Your Courses</span>
-                        <span class="greet-text">Take a look at the lessons you have.</span>
-                    </div>
-                    <div class="your-courses">
-                        <?php foreach($courses as $c): ?>
-                        <?php $count = count($c['students']); ?>
-                        <div class="course">
-                            <img class="course-img" src="assets/pexels-julia-m-cameron-4144294(1).jpg">
-                            <a class="course-name" href="#"><?php echo "{$c['name']}" ?></a>
-                            <span class="course-students"><?php echo "$count Members"?></span>
-                        </div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-                <hr>
-                <div class="your-courses-area">
-                    <div class="your-courses-text">
-                        <span class="greet-title-text">Upcoming</span>
-                        <span class="greet-text"><?php echo date('l, F jS')?></span>
-                    </div>
-                    <div class="calendar-area">
-                        <div class="calendar">
-                            <a class="course-name" href="#">CMPE372</a><br>
-                            <span class="course-students">10:30 - 11:30</span>
-                            <span class="course-students">32 Members</span><br>
-                            <span class="course-students">Zoom</span>
-                        </div>
-                        <div class="calendar">
-                            <a class="course-name" href="#">CMPE372</a><br>
-                            <span class="course-students">10:30 - 11:30</span>
-                            <span class="course-students">32 Members</span><br>
-                            <span class="course-students">Zoom</span>
-                        </div>
-                        <div class="calendar">
-                            <a class="course-name" href="#">CMPE372</a><br>
-                            <span class="course-students">10:30 - 11:30</span>
-                            <span class="course-students">32 Members</span><br>
-                            <span class="course-students">Zoom</span>
-                        </div>
-                    </div>
-                </div>
-                <!--
                 <div class="footer-container">
                     <div class="footer-area">
                          <img src="assets/casara-logo-white-selfmade.png">
@@ -168,12 +169,11 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="footer-area">
-                    <span>You are logged in as: <strong><?php echo "{$user['name']} {$user['surname']}" ?></strong></span><br>
-                    <span class="footer-link"><a href="index.php?logout='1'">Log Out</a></span>
+                    <div class="footer-area text-right">
+                        <span>You are logged in as: <strong><?php echo "{$user['name']} {$user['surname']}" ?></strong></span><br>
+                        <span class="footer-link"><a href="index.php?logout='1'">Log Out</a></span>
                     </div>
                 </div>
-                        -->
             </div>
         </div>
     </body>
