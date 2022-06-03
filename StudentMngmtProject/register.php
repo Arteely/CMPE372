@@ -1,4 +1,4 @@
-<?php include('register-form.php') ?>
+<?php include('includes/register-form.php') ?>
 
 <html lang="en-gb">
     <head>
@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="login.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;700&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;700&display=swap" rel="stylesheet">
         <link rel="icon" href="assets/favicon.ico">
     </head>
     <body>
@@ -26,30 +26,30 @@
                         <h2 class="sub-title">Create an account</h2>
                         <p class="sub-text">Let's get you started!</p>
                         <form action="register.php" method="post">
-                            <?php include('form-errors.php'); ?>
+                            <?php include('includes/form-errors.php'); ?>
                             <div class="form-input">
                                 <label for="name" class="form-label">Name</label>
-                                <input name="name" class="form-input-label" type="text" placeholder="John">
+                                <input name="name" class="form-input-label" type="text" placeholder="John" required>
                             </div>
                             <div class="form-input">
                                 <label for="surname" class="form-label">Surname</label>
-                                <input name="surname" class="form-input-label" type="text" placeholder="Doe">
+                                <input name="surname" class="form-input-label" type="text" placeholder="Doe" required>
                             </div>
                             <div class="form-input">
                                 <label for="faculty_id" class="form-label">Student/Faculty ID</label>
-                                <input name="faculty_id" class="form-input-label" type="number" placeholder="12345678">
+                                <input name="faculty_id" class="form-input-label" type="number" placeholder="12345678" required>
                             </div>
                             <div class="form-input">
                                 <label for="username" class="form-label">E-Mail</label>
-                                <input name="username" class="form-input-label" type="email" placeholder="email@example.com">
+                                <input name="username" class="form-input-label" type="email" placeholder="email@example.com" required>
                             </div>
                             <div class="form-input">
                                 <label for="password" class="form-label">Password</label>
-                                <input name="password" class="form-input-label" type="password" placeholder="Your Password">
+                                <input name="password" class="form-input-label" type="password" placeholder="Your Password" required>
                             </div>
                             <div class="form-input">
                                 <label for="password" class="form-label">Confirm Password</label>
-                                <input name="password_confirmation" class="form-input-label" type="password" placeholder="Your Password">
+                                <input name="password_confirmation" class="form-input-label" type="password" placeholder="Your Password" required>
                             </div>
                             <input class="login-button" type="submit" value="Register" name="register_user">
                             <div class="spacer"></div>

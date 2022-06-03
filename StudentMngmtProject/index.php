@@ -1,28 +1,23 @@
-<?php 
-  session_start(); 
+<?php
+    session_start();
 
-  if (!isset($_SESSION['username'])) {
-  	$_SESSION['msg'] = "You must log in first";
-  	header('location: login.php');
+    if (!isset($_SESSION['user'])) {
+    header('location: login.php');
     }
 
-  if (isset($_GET['logout'])) {
-  	session_destroy();
-  	unset($_SESSION['username']);
-  	header("location: login.php");
-  }
+    if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['user']);
+    header("location: login.php");
+    }
 
-  require_once('connect.php');
-  $username = mysqli_real_escape_string($db_cxn , $_SESSION['username']);
-  $query = mysqli_query($db_cxn , "SELECT * FROM users WHERE username='$username'");
-  $user = mysqli_fetch_assoc($query);
-  $query = mysqli_query($db_cxn , "SELECT * FROM courses WHERE teacher_id='{$user['id']}'");
-  $courses = mysqli_fetch_all($query , MYSQLI_ASSOC);
-  foreach($courses as &$c){
-      $query = mysqli_query($db_cxn , "SELECT * FROM students_courses WHERE course_id='{$c['id']}'");
-      $students = mysqli_fetch_all($query , MYSQLI_ASSOC);
-      $c['students'] = $students;
-  }
+    require_once('includes/connect.php');
+    $USER = $_SESSION['user'];
+
+    $page = $_GET['page'];
+    $page_path = "pages/$page.php";
+    if(!isset($_GET['page']) || !file_exists($page_path))
+        header("location: index.php?page=dashboard");
 ?>
 
 <html lang="en-gb">
@@ -40,30 +35,30 @@
                 <div class="navbar-user">
                     <img src="assets/casara-logo-white-selfmade.png">
 
-                    <span class="navbar-user-text">Welcome! <?php echo "{$user['name']}" ?></span>
+                    <span class="navbar-user-text">Welcome! <?php echo "{$USER['name']}" ?></span>
                     <span class="navbar-user-text">Faculty of Business</span>
                 </div>
                 <hr class="sidebar-divide">
                 <ul class="side-menu-links">
-                    <li class="side-menu-button selected">
-                        <a href="index.php">
+                    <li class="side-menu-button <?php echo $page == "dashboard" ? "selected" : ""; ?>">
+                        <a href="index.php?page=dashboard">
                             <img class="side-menu-button-image" src="assets/icons/table-columns-solid.svg">
                             <span class="side-menu-button-text">Dashboard</span>
                         </a>
                     </li>
-                    <li class="side-menu-button">
+                    <li class="side-menu-button <?php echo $page == "lessons" ? "selected" : ""; ?>">
                         <a href="#">
                             <img class="side-menu-button-image" src="assets/icons/check-solid.svg">
                             <span class="side-menu-button-text">Lessons</span>
                         </a>
                     </li>
-                    <li class="side-menu-button">
-                        <a href="#">
+                    <li class="side-menu-button <?php echo $page == "students" ? "selected" : ""; ?>">
+                        <a href="index.php?page=students">
                             <img class="side-menu-button-image" src="assets/icons/users-solid.svg">
                             <span class="side-menu-button-text">Students</span>
                         </a>
                     </li>
-                    <li class="side-menu-button">
+                    <li class="side-menu-button <?php echo $page == "settings" ? "selected" : ""; ?>">
                         <a href="#">
                             <img class="side-menu-button-image" src="assets/icons/sliders-solid.svg">
                             <span class="side-menu-button-text">Settings</span>
@@ -72,7 +67,7 @@
                 </ul>
                     <hr class="sidebar-divide">
                 <ul class="side-menu-links">
-                    <li class="side-menu-button">
+                    <li class="side-menu-button <?php echo $page == "announcements" ? "selected" : ""; ?>">
                         <a href="#">
                             <img class="side-menu-button-image" src="assets/icons/bullhorn-solid.svg">
                             <span class="side-menu-button-text">Announcements</span>
@@ -90,67 +85,10 @@
                 </div>
             </div>
             <div class="main-content-area">
-                <div class="greet-search-area">
-                    <div class="user-greet">
-                     <span class="greet-title-text"><?php echo "{$user['name']} {$user['surname']}" ?></span>
-                     <span class="greet-text">Good Afternoon, you have no upcoming lessons today!</span>
-                    </div>
-                    <div class="search-bar">
-                        <img class="search-icon" src="assets/icons/magnifying-glass-solid.svg">
-                        <input class="search-input" type="text" placeholder="Search courses or anything">
-                    </div>
-                    <div class="notifications-bar">
-                        <a href="#"><img class="notification-icon" src="assets/icons/bell-solid.svg"></a>
-                    </div>
-                </div>
-                <hr>
-                <div class="your-courses-area">
-                    <div class="your-courses-text">
-                        <span class="greet-title-text">Your Courses</span>
-                        <span class="greet-text">Take a look at the lessons you have.</span>
-                    </div>
-                    <div class="your-courses">
-                        <?php foreach($courses as $c): ?>
-                        <?php $count = count($c['students']); ?>
-                        <div class="course">
-                            <img class="course-img" src="assets/pexels-julia-m-cameron-4144294(1).jpg">
-                            <a class="course-name" href="#"><?php echo "{$c['name']}" ?></a>
-                            <span class="course-students"><?php echo "$count Members"?></span>
-                        </div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-                <hr>
-                <div class="your-courses-area">
-                    <div class="your-courses-text">
-                        <span class="greet-title-text">Upcoming</span>
-                        <span class="greet-text"><?php echo date('l, F jS')?></span>
-                    </div>
-                    <div class="calendar-area">
-                        <div class="calendar">
-                            <a class="course-name" href="#">CMPE372</a><br>
-                            <span class="course-students">10:30 - 11:30</span>
-                            <span class="course-students">32 Members</span><br>
-                            <span class="course-students">Zoom</span>
-                        </div>
-                        <div class="calendar">
-                            <a class="course-name" href="#">CMPE372</a><br>
-                            <span class="course-students">10:30 - 11:30</span>
-                            <span class="course-students">32 Members</span><br>
-                            <span class="course-students">Zoom</span>
-                        </div>
-                        <div class="calendar">
-                            <a class="course-name" href="#">CMPE372</a><br>
-                            <span class="course-students">10:30 - 11:30</span>
-                            <span class="course-students">32 Members</span><br>
-                            <span class="course-students">Zoom</span>
-                        </div>
-                    </div>
-                </div>
-                <!--
+                <?php require_once($page_path); ?>
                 <div class="footer-container">
                     <div class="footer-area">
-                         <img src="assets/casara-logo-white-selfmade.png">
+                            <img src="assets/casara-logo-white-selfmade.png">
                     </div>
                     <div class="footer-area">
                         <ul class="footer-links">
@@ -168,12 +106,13 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="footer-area">
-                    <span>You are logged in as: <strong><?php echo "{$user['name']} {$user['surname']}" ?></strong></span><br>
-                    <span class="footer-link"><a href="index.php?logout='1'">Log Out</a></span>
+                    <div class="footer-area flex-right">
+                        <div class="footer-logout">
+                            <span>You are logged in as: <strong><?php echo "{$USER['name']} {$USER['surname']}" ?></strong></span><br>
+                            <span class="footer-link"><a href="index.php?logout='1'">Log Out</a></span>
+                        </div>
                     </div>
                 </div>
-                        -->
             </div>
         </div>
     </body>
