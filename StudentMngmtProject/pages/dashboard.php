@@ -1,14 +1,72 @@
+<script src="pages/dashboard.js"></script>
+
 <?php
-  $query = mysqli_query($db_cxn , "SELECT * FROM courses WHERE teacher_id='{$USER['id']}'");
-  $courses = mysqli_fetch_all($query , MYSQLI_ASSOC);
-  foreach($courses as &$c){
-      $query = mysqli_query($db_cxn , "SELECT * FROM students_courses WHERE course_id='{$c['id']}'");
-      $students = mysqli_fetch_all($query , MYSQLI_ASSOC);
-      $c['students'] = $students;
-  }
+    $today = new DateTimeImmutable("today");
+    if (!isset($_GET['week']))
+    {
+        $curr_w = intval($today->format("W"));
+        echo <<<END
+        <script>
+            gotoWeek($curr_w, true);
+        </script>
+END;
+    }
 ?>
 
-<div class="main-content-body">
+<?php
+    require_once("includes/db-conv.php");
+    static $colors = ['#fffacd', '#add8e6', "#fff0f5", "#00FF7F"];
+
+    $query = mysqli_query($db_cxn , "SELECT * FROM courses WHERE teacher_id='{$USER['id']}'");
+    $courses_m = mysqli_fetch_all($query , MYSQLI_ASSOC);
+
+    $i = 0;
+    $courses = [];
+    foreach($courses_m as &$c){
+        $query = mysqli_query($db_cxn , "SELECT * FROM students_courses WHERE course_id='{$c['id']}'");
+        $students = mysqli_fetch_all($query , MYSQLI_ASSOC);
+        $c['students'] = $students;
+        $c['color'] = $colors[$i % count($colors)];
+        $i++;
+
+        $courses[$c['id']] = $c;
+    }
+
+    $thisyear = intval($today->format("o"));
+    $w_desired = $_GET['week'];
+
+    $w_start = new DateTime();
+    $w_start->setISODate($thisyear, $w_desired);
+    $w_start->setTime(0, 0);
+    $w_end = clone $w_start;
+    $w_end->add(new DateInterval("P7D"));
+
+    $w_endm1 = clone $w_end;
+    $w_endm1->sub(new DateInterval("P1D"));
+
+    $w_start_m = $w_start->format("Y-m-d H:i:s");
+    $w_end_m = $w_end->format("Y-m-d H:i:s");
+
+    $query = mysqli_query($db_cxn,
+        "SELECT * FROM lectures
+            INNER JOIN courses ON lectures.course_id = courses.id
+            WHERE courses.teacher_id = '{$USER['id']}'
+            AND (lectures.start BETWEEN '$w_start_m' AND '$w_end_m')");
+    $lectures = mysqli_fetch_all($query, MYSQLI_ASSOC);
+
+    $l_by_date = [];
+    foreach($lectures as &$l) {
+        $l['start'] = new DateTimeImmutable($l['start']);
+        $l['end'] = new DateTimeImmutable($l['end']);
+        $l['duration_s'] = $l['end']->getTimestamp() - $l['start']->getTimestamp();
+        $date = $l['start']->format("Y-m-d");
+        if (!isset($l_by_date[$date]))
+            $l_by_date[$date] = array();
+        $l_by_date[$date][] = $l;
+    }
+?>
+
+<div class="dashboard-body">
     <div class="greet-search-area">
         <div class="user-greet">
             <span class="greet-title-text"><?php echo "{$USER['name']} {$USER['surname']}" ?></span>
@@ -31,7 +89,7 @@
         <div class="your-courses">
             <?php foreach($courses as $c): ?>
             <?php $count = count($c['students']); ?>
-            <div class="course">
+            <div class="course" style="<?php echo "--col: {$c['color']}"?>">
                 <img class="course-img" src="assets/pexels-julia-m-cameron-4144294(1).jpg">
                 <a class="course-name" href="#"><?php echo "{$c['name']}" ?></a>
                 <span class="course-students"><?php echo "$count Members"?></span>
@@ -40,29 +98,60 @@
         </div>
     </div>
     <hr>
-    <div class="your-courses-area">
-        <div class="your-courses-text">
-            <span class="greet-title-text">Upcoming</span>
-            <span class="greet-text"><?php echo date('l, F jS')?></span>
+    <div class="upcoming-area">
+        <div class="your-courses-header">
+            <div class="your-courses-text">
+                <span class="greet-title-text">Upcoming</span>
+                <span class="greet-text"><?php echo "{$w_start->format('l, F jS')} - {$w_endm1->format('l, F jS')}"; ?></span>
+            </div>
+            <div class="calendar-buttons">
+                <div class="calendar-buttons-inner">
+                    <div class="button-prev">
+                        <button onclick="prevWeek()">&#12296;</button>
+                    </div>
+                    <div class="button-next">
+                        <button onclick="nextWeek()">&#10217;</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="calendar-area">
             <div class="calendar">
-                <a class="course-name" href="#">CMPE372</a><br>
-                <span class="course-students">10:30 - 11:30</span>
-                <span class="course-students">32 Members</span><br>
-                <span class="course-students">Zoom</span>
-            </div>
-            <div class="calendar">
-                <a class="course-name" href="#">CMPE372</a><br>
-                <span class="course-students">10:30 - 11:30</span>
-                <span class="course-students">32 Members</span><br>
-                <span class="course-students">Zoom</span>
-            </div>
-            <div class="calendar">
-                <a class="course-name" href="#">CMPE372</a><br>
-                <span class="course-students">10:30 - 11:30</span>
-                <span class="course-students">32 Members</span><br>
-                <span class="course-students">Zoom</span>
+                <div></div>
+                <div class="calendar-header-marking">07:00</div>
+                <div class="calendar-header-vbar" style="--vbar-col:2"></div>
+                <div class="calendar-header-marking">10:00</div>
+                <div class="calendar-header-vbar" style="--vbar-col:3"></div>
+                <div class="calendar-header-marking">13:00</div>
+                <div class="calendar-header-vbar" style="--vbar-col:4"></div>
+                <div class="calendar-header-marking">16:00</div>
+                <div class="calendar-header-vbar" style="--vbar-col:5"></div>
+                <div class="calendar-header-marking">19:00</div>
+                <div class="calendar-header-vbar" style="--vbar-col:6"></div>
+                <?php
+                    $d = clone $w_start;
+                    for($i = 0; $i < 7; $i++) {
+                        echo "<div class=\"calendar-day-name\">{$d->format("l")}</div>";
+                        echo "<div class=\"calendar-day-bar\">";
+                        $d_key = $d->format("Y-m-d");
+                        if(array_key_exists($d_key, $l_by_date)) {
+                            foreach($l_by_date[$d_key] as $l) {
+                                $l_type = db_l_type_enum_to_human($l['course_type']);
+                                $l_plen = $l['duration_s'] / 540;
+                                $l_startpos = ($l['start']->getTimestamp() - $d->getTimestamp() - 25200) / 540;
+                                $col = $courses[$l['course_id']]['color'];
+                                echo <<<END
+                                <div class="calendar-day-bar-inner tooltip" style="--p-startpos: $l_startpos%; --p-len: $l_plen%; --col: $col">
+                                <p>{$l['name']}</p>
+                                <span class="tooltip-text">{$l['name']} $l_type</span>
+                                </div>
+                                END;
+                            }
+                        }
+                        $d->add(new DateInterval("P1D"));
+                        echo "</div>";
+                    }
+                ?>
             </div>
         </div>
     </div>

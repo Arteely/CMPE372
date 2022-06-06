@@ -31,3 +31,22 @@ CREATE TABLE students_courses(
     FOREIGN KEY(course_id) REFERENCES courses(id),
     FOREIGN KEY(student_id) REFERENCES students(id)
 );
+CREATE TABLE lectures(
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    course_id INTEGER NOT NULL,
+    course_type ENUM('inperson', 'remote-zoom') NOT NULL DEFAULT 'inperson',
+    start DATETIME NOT NULL,
+    end DATETIME NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(course_id) REFERENCES courses(id)
+);
+CREATE TABLE homeworks(
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    course_id INTEGER NOT NULL,
+    int_lecture INTEGER NOT NULL,
+    due DATETIME NOT NULL,
+    doc_ref CHAR(64) NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(course_id) REFERENCES courses(id),
+    FOREIGN KEY(int_lecture) REFERENCES lectures(id)
+);

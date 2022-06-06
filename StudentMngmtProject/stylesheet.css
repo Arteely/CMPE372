@@ -119,6 +119,8 @@ hr{
 
     display: flex;
     flex-direction: column;
+
+    overflow-y: auto;
 }
 
 .main-content-body {
@@ -128,6 +130,7 @@ hr{
 .greet-search-area{
     display: flex;
     justify-content: space-between;
+    flex: 0 0 auto;
 }
 
 .user-greet{
@@ -204,21 +207,24 @@ hr{
 
 .your-courses{
     display: flex;
+    gap: 1rem;
     justify-content: flex-start;
     padding-bottom: 2rem;
+    padding-left: 2rem;
+    overflow-x: auto;
 }
 
 .course{
     display: flex;
     flex-direction: column;
-    max-width: 15%;
+    width: calc(100% / 6);
     align-items: center;
-    background-color: #e4e4e4;
+    background-color: var(--col);
     border-radius: 15px;
     padding: 1rem;
-    margin-left: 2rem;
-    margin-right: 2rem;
     transition: all 0.3s ease;
+
+    flex: 0 0 auto;
 }
 
 .course:hover{
@@ -232,9 +238,9 @@ hr{
 }
 
 .course-img{
-    height: 8rem;
+    width: 100%;
+    aspect-ratio: 1;
     object-fit: cover;
-    max-width: 8rem;
     border-radius: 15px;
 }
 
@@ -250,25 +256,6 @@ hr{
     font-weight: 300;
     color: #3A3A3A;
     text-align: center;
-}
-
-.calendar-area{
-    display: flex;
-    border-radius: 15px;
-    background-color: white;
-    margin: 0 25px 25px 25px;
-}
-
-.calendar{
-    margin: 1rem;
-    border-radius: 15px;
-    background-color: #e4e4e4;
-    padding: 1rem;
-}
-
-.calendar a{
-    text-decoration: none;
-    color: #252525;
 }
 
 .footer-container {
@@ -328,4 +315,165 @@ hr{
 
 .footer-logout {
     text-align: right;
+}
+
+.your-courses-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboard-body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.your-courses-area {
+    flex: 0 0 auto;
+}
+
+.upcoming-area {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-area {
+    border-radius: 15px;
+    background-color: white;
+    margin: 1rem;
+    margin-top: 0;
+    padding: 0.5rem;
+    table-layout: fixed;
+}
+
+.calendar {
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: min-content [day-bar-start] repeat(5, 1fr) [day-bar-end];
+    grid-template-rows: [header] 1rem repeat(7, 2rem);
+    row-gap: 0.5rem;
+}
+
+.calendar-day-name {
+    padding-right: 0.5rem;
+    margin: auto 0;
+}
+
+.calendar-day-bar {
+    position: relative;
+    padding: 0.1rem 0;
+    border-left: 1px grey solid;
+    grid-column: day-bar-start / day-bar-end;
+}
+
+.calendar-day-bar-inner {
+    transform: scale(0.9);
+    position: absolute;
+    height: 100%;
+    left: var(--p-startpos);
+    width: var(--p-len);
+    background-color: var(--col);
+    border-radius: 15px;
+    padding: 0 0.5rem;
+
+    display: flex;
+    font-size: small;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.calendar-day-bar-inner > p {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.calendar-header-mbar {
+    display: flex;
+}
+
+.calendar-header-marking {
+    flex: 1 0 auto;
+    font-size: x-small;
+}
+
+.calendar-header-vbar {
+    position: absolute;
+    display: block;
+    width: 1px;
+    height: 100%;
+    grid-column: var(--vbar-col);
+    grid-row: 2 / -1;
+    background-color: grey;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    bottom: 110%;
+    left: 50%;
+    padding: 0.5rem;
+
+    transform: translateX(-50%);
+
+    white-space: nowrap;
+    background-color: #252525;
+    color: white;
+
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+}
+
+.calendar-buttons {
+    margin-right: 1rem;
+    display: flex;
+
+    align-items: center;
+}
+
+.calendar-buttons-inner {
+    position: relative;
+    height: 2rem;
+    width: 4rem;
+
+    border-radius: 15px;
+    overflow: hidden;
+
+    background-color: #fefefe;
+
+    display: flex;
+}
+
+.button-prev, .button-next {
+    flex: 1;
+}
+
+.button-prev > button, .button-next > button {
+    height: 100%;
+    width: 100%;
+    border: 0;
+    background: none;
+}
+
+.button-prev > button:hover, .button-next > button:hover {
+    background-color: rgba(0, 0, 0, 0.2);
 }

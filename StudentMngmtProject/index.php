@@ -85,7 +85,9 @@
                 </div>
             </div>
             <div class="main-content-area">
-                <?php require_once($page_path); ?>
+                <div class="main-content-body">
+                    <?php require_once($page_path); ?>
+                </div>
                 <div class="footer-container">
                     <div class="footer-area">
                             <img src="assets/casara-logo-white-selfmade.png">
