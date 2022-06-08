@@ -505,6 +505,7 @@ hr{
 
 .course-description{
     display: flex;
+    justify-content: space-between;
 }
 
 
@@ -522,7 +523,8 @@ hr{
   .tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
   .tabset > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2),
   .tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3){
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
   }
   
 
@@ -586,7 +588,8 @@ hr{
     margin: 15px 25px 25px 25px;
     color: white;
     max-width: 20rem;
-    padding: 25px
+    padding: 25px;
+    float: right
 }
 
 .instructor-description h3{
@@ -612,6 +615,12 @@ hr{
       margin-bottom: 15px;
   }
 
+  section .instructor-profile{
+      display: flex;
+      margin: 15px;
+      width: max-content;
+  }
+
   .instructor-name{
     font-weight: 700;
   }
@@ -632,7 +641,7 @@ hr{
 
 .announcement-header{
     display: flex;
-    margin: 25px;
+    margin: 25px 25px 0 25px;
     border-bottom: 1px solid #ccc;
     border-radius: 15px;
     background-color: #252525;
@@ -649,6 +658,10 @@ hr{
     display: flex;
     margin: 25px;
     border-bottom: 1px solid #ccc;
+}
+
+.announcements{
+    overflow: scroll;
 }
 
 .announcement span,.announcement a{

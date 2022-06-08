@@ -47,7 +47,7 @@
                         </a>
                     </li>
                     <li class="side-menu-button <?php echo $page == "lessons" ? "selected" : ""; ?>">
-                        <a href="#">
+                        <a href="index.php?page=courses">
                             <img class="side-menu-button-image" src="assets/icons/check-solid.svg">
                             <span class="side-menu-button-text">Lessons</span>
                         </a>

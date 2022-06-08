@@ -12,6 +12,7 @@
                     <span class="an-rest">Created By</span>
                     <span class="an-rest">Date</span>
                 </div>
+                <div class="announcements">
                 <div class="announcement">
                     <a class="an-head" href="#">Scheduled Maintenance this week</a>
                     <span class="an-rest">CASARA-SIS Admin</span>
@@ -36,6 +37,7 @@
                     <a class="an-head" href="#">Scheduled Maintenance this week</a>
                     <span class="an-rest">CASARA-SIS Admin</span>
                     <span class="an-rest">08.07.2022 16:33</span>
+                </div>
                 </div>
             </div>
             <div class="announcement-side">
