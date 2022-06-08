@@ -625,3 +625,64 @@ hr{
       margin: auto;
       margin-left: 0;
   }
+
+.announcement-container{
+    min-width: 50%;
+}
+
+.announcement-header{
+    display: flex;
+    margin: 25px;
+    border-bottom: 1px solid #ccc;
+    border-radius: 15px;
+    background-color: #252525;
+    color: white;
+}
+
+.announcement-header span{
+    padding: 1rem;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.announcement{
+    display: flex;
+    margin: 25px;
+    border-bottom: 1px solid #ccc;
+}
+
+.announcement span,.announcement a{
+    padding: 0 1rem 1rem 1rem;
+    font-size: 14px;
+    font-weight: 300;
+    text-decoration: none;
+    color: #252525;
+    transition: 0.1s ease-in;
+}
+
+.announcement a:hover{
+    color: #ccc;
+    transition: 0.1s ease-in;
+}
+
+.announcement-side{
+    margin: 25px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 1rem;
+    overflow: scroll;
+}
+
+.announcement-heading p{
+    font-size: 12px;
+    font-weight: 300;
+    margin: 25px;
+}
+  
+  .an-head{
+      flex: 2;
+  }
+
+  .an-rest{
+      flex: 1;
+  }

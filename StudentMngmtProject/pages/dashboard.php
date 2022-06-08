@@ -77,7 +77,7 @@ END;
             <input class="search-input" type="text" placeholder="Search courses or anything">
         </div>
         <div class="notifications-bar">
-            <a href="#"><img class="notification-icon" src="assets/icons/bell-solid.svg"></a>
+            <a href="index.php?page=announcements"><img class="notification-icon" src="assets/icons/bell-solid.svg"></a>
         </div>
     </div>
     <hr>

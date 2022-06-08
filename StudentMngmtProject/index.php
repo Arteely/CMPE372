@@ -68,7 +68,7 @@
                     <hr class="sidebar-divide">
                 <ul class="side-menu-links">
                     <li class="side-menu-button <?php echo $page == "announcements" ? "selected" : ""; ?>">
-                        <a href="#">
+                        <a href="index.php?page=announcements">
                             <img class="side-menu-button-image" src="assets/icons/bullhorn-solid.svg">
                             <span class="side-menu-button-text">Announcements</span>
                         </a>
