@@ -112,7 +112,6 @@ hr{
 
 .main-content-area{
     width: 100%;
-    min-height: 100%;
     border-radius: 15px;
     background-color: #F4F4F4;
     margin: 10px;
@@ -224,14 +223,13 @@ hr{
 .course{
     display: flex;
     flex-direction: column;
-    width: calc(100% / 6);
     align-items: center;
     background-color: var(--col);
     border-radius: 15px;
     padding: 1rem;
     transition: all 0.3s ease;
 
-    flex: 0 0 auto;
+    flex: 0 0 calc(100% / 6);
 }
 
 .course:hover{
@@ -515,20 +513,20 @@ hr{
     position: absolute;
     left: -200vw;
   }
-  
+
   .tabset .tab-panel {
     display: none;
   }
-  
+
   .tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
   .tabset > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2),
   .tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3){
     display: flex;
     flex-wrap: wrap;
   }
-  
 
-  
+
+
   .tabset > label {
     position: relative;
     display: inline-block;
@@ -537,7 +535,7 @@ hr{
     cursor: pointer;
     font-weight: 600;
   }
-  
+
   .tabset > label::after {
     content: "";
     display: block;
@@ -546,18 +544,18 @@ hr{
     margin-top: 5px;
     background: black;
   }
-  
+
   .tabset > label:hover,
   .tabset > input:focus + label {
     color: #6e6e6e;
   }
-  
+
   .tabset > label:hover::after,
   .tabset > input:focus + label::after,
   .tabset > input:checked + label::after {
     background: #6e6e6e;
   }
-  
+
   .tab-panel {
     padding: 30px 0;
     border-top: 1px solid #ccc;
@@ -572,7 +570,7 @@ hr{
       font-weight: 300;
       margin: 25px;
   }
-  
+
   .tabset {
     max-width: 65em;
     margin-left: 25px;
@@ -585,11 +583,14 @@ hr{
 .instructor-description{
     background: #252525;
     border-radius: 15px;
-    margin: 15px 25px 25px 25px;
+    margin-right: 25px;
+    margin-top: 25px;
     color: white;
     max-width: 20rem;
     padding: 25px;
-    float: right
+    float: right;
+
+    align-self: flex-start;
 }
 
 .instructor-description h3{
@@ -629,7 +630,7 @@ hr{
       font-size: 12px;
       font-weight: 300;
   }
-  
+
   .instructor-info{
       margin: auto;
       margin-left: 0;
@@ -691,7 +692,7 @@ hr{
     font-weight: 300;
     margin: 25px;
 }
-  
+
   .an-head{
       flex: 2;
   }

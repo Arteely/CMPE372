@@ -1,18 +1,28 @@
 CREATE DATABASE group6;
 USE group6;
+CREATE TABLE faculties(
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    PRIMARY KEY(id)
+);
 CREATE TABLE users(
     id INTEGER NOT NULL AUTO_INCREMENT,
     username VARCHAR(255) NOT NULL,
     name VARCHAR(255) NOT NULL,
     surname VARCHAR(255) NOT NULL,
     faculty_id VARCHAR(255) NOT NULL,
+    faculty_ref INTEGER NOT NULL,
     password VARCHAR(255) NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY(id)
+    description TEXT,
+    PRIMARY KEY(id),
+    FOREIGN KEY(faculty_ref) REFERENCES faculties(id)
 );
 CREATE TABLE courses(
     id INTEGER NOT NULL AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL UNIQUE,
+    ext_name VARCHAR(255) NOT NULL,
+    description TEXT,
     teacher_id INTEGER NOT NULL,
     PRIMARY KEY(id),
     FOREIGN KEY(teacher_id) REFERENCES users(id)
