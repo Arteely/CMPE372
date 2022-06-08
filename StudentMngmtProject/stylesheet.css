@@ -22,7 +22,7 @@ hr{
 .main-page-container{
     display: flex;
     height: 100vh;
-    padding: 2rem;
+    padding: 0.5rem;
 }
 
 .navbar-user{
@@ -148,6 +148,13 @@ hr{
 
 .greet-text{
     font-size: 12px;
+    font-weight: 300;
+    margin: 5px 25px 15px 25px;
+    color: #3A3A3A;
+}
+
+.greet-subheading{
+    font-size: 14px;
     font-weight: 300;
     margin: 5px 25px 15px 25px;
     color: #3A3A3A;
@@ -360,6 +367,8 @@ hr{
 .calendar-day-name {
     padding-right: 0.5rem;
     margin: auto 0;
+    font-size: 12px;
+    font-weight: 200;
 }
 
 .calendar-day-bar {
@@ -477,3 +486,142 @@ hr{
 .button-prev > button:hover, .button-next > button:hover {
     background-color: rgba(0, 0, 0, 0.2);
 }
+
+.course-intro{
+    display: flex;
+    flex-direction: column;
+}
+
+.course-banner-container{
+    padding: 5px 25px 15px 25px;
+}
+
+.course-banner{
+    width: 100%;
+    height: 20rem;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.course-description{
+    display: flex;
+}
+
+
+/* Tabs Part */
+
+.tabset > input[type="radio"] {
+    position: absolute;
+    left: -200vw;
+  }
+  
+  .tabset .tab-panel {
+    display: none;
+  }
+  
+  .tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
+  .tabset > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2),
+  .tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3){
+    display: block;
+  }
+  
+
+  
+  .tabset > label {
+    position: relative;
+    display: inline-block;
+    padding: 15px;
+    border-bottom: 0;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  .tabset > label::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    margin-top: 5px;
+    background: black;
+  }
+  
+  .tabset > label:hover,
+  .tabset > input:focus + label {
+    color: #6e6e6e;
+  }
+  
+  .tabset > label:hover::after,
+  .tabset > input:focus + label::after,
+  .tabset > input:checked + label::after {
+    background: #6e6e6e;
+  }
+  
+  .tab-panel {
+    padding: 30px 0;
+    border-top: 1px solid #ccc;
+  }
+
+  .tab-panel h3{
+    margin-left: 25px;
+  }
+
+  .tab-panel p{
+      font-size: 14px;
+      font-weight: 300;
+      margin: 25px;
+  }
+  
+  .tabset {
+    max-width: 65em;
+    margin-left: 25px;
+  }
+
+  .tabs-container{
+      background-color:#252525;
+  }
+
+.instructor-description{
+    background: #252525;
+    border-radius: 15px;
+    margin: 15px 25px 25px 25px;
+    color: white;
+    max-width: 20rem;
+    padding: 25px
+}
+
+.instructor-description h3{
+    margin-bottom: 15px;
+}
+
+.instructor-description p{
+    font-size: 14px;
+    font-weight: 300;
+}
+
+  .instructor-image{
+      width: 3rem;
+      height: 3rem;
+      margin: auto 15px auto 0;
+    background-color: #3A3A3A;
+    border-radius: 50%;
+    padding: .33rem;
+  }
+
+  .instructor-profile{
+      display:flex;
+      margin-bottom: 15px;
+  }
+
+  .instructor-name{
+    font-weight: 700;
+  }
+
+  .instructor-faculty{
+      font-size: 12px;
+      font-weight: 300;
+  }
+  
+  .instructor-info{
+      margin: auto;
+      margin-left: 0;
+  }
