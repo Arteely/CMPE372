@@ -15,7 +15,7 @@ END;
 
 <?php
     require_once("includes/db-conv.php");
-    static $colors = ['#fffacd', '#add8e6', "#fff0f5", "#00FF7F"];
+    static $colors = ['#203C56', '#544E68', '#8D697A', "#DD8159", "#FDAA5E"];
 
     $query = mysqli_query($db_cxn , "SELECT * FROM courses WHERE teacher_id='{$USER['id']}'");
     $courses_m = mysqli_fetch_all($query , MYSQLI_ASSOC);
