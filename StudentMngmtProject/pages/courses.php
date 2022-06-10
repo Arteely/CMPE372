@@ -99,7 +99,7 @@
                             <span class="lecture-new-icon">&#65291;</span>
                         </div>
                         <div class="lecture-body">
-                            <a href="#" class="lecture-body-topic">Schedule New Lecture</span>
+                            <a href="#" class="lecture-body-topic">Schedule New Lecture</span></a>
                         </div>
                     </div>
                 </section>

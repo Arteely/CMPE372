@@ -123,7 +123,6 @@ hr{
 
 .main-content-body {
     flex: 1;
-    min-height: 0;
 }
 
 .greet-search-area{
@@ -541,7 +540,6 @@ hr{
 .tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3),
 .tabset > input:nth-child(7):checked ~ .tab-panels > .tab-panel:nth-child(4) {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
 }
 
