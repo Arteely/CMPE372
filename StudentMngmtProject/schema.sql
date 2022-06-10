@@ -23,16 +23,17 @@ CREATE TABLE courses(
     name VARCHAR(255) NOT NULL UNIQUE,
     ext_name VARCHAR(255) NOT NULL,
     description TEXT,
-    teacher_id INTEGER NOT NULL,
+    teacher_id INTEGER,
     PRIMARY KEY(id),
     FOREIGN KEY(teacher_id) REFERENCES users(id)
 );
 CREATE TABLE students(
     id INTEGER NOT NULL AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL UNIQUE,
-    surname VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    surname VARCHAR(255) NOT NULL,
     student_id INTEGER NOT NULL,
-    PRIMARY KEY(id)
+    PRIMARY KEY(id),
+    UNIQUE KEY (name, surname)
 );
 CREATE TABLE students_courses(
     course_id INTEGER NOT NULL,
@@ -43,6 +44,7 @@ CREATE TABLE students_courses(
 );
 CREATE TABLE lectures(
     id INTEGER NOT NULL AUTO_INCREMENT,
+    topic VARCHAR(255) NOT NULL,
     course_id INTEGER NOT NULL,
     course_type ENUM('inperson', 'remote-zoom') NOT NULL DEFAULT 'inperson',
     start DATETIME NOT NULL,
@@ -59,4 +61,13 @@ CREATE TABLE homeworks(
     PRIMARY KEY(id),
     FOREIGN KEY(course_id) REFERENCES courses(id),
     FOREIGN KEY(int_lecture) REFERENCES lectures(id)
+);
+
+CREATE TABLE announcements(
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    created_by VARCHAR(255) NOT NULL,
+    dated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    description TEXT,
+    PRIMARY KEY(id)
 );

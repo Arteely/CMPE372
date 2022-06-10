@@ -111,6 +111,9 @@ else if (isset($_POST['login_user'])) {
 }
 
 if ($user != null) {
+    if($user['description'] !== null) {
+        $user['description'] = explode("\n", $user['description']);
+    }
     $_SESSION['user'] = $user;
     header("location: index.php?page=dashboard");
 }

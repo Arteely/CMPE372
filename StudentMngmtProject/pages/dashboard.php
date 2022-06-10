@@ -91,8 +91,10 @@ END;
             <?php $count = count($c['students']); ?>
             <div class="course" style="<?php echo "--col: {$c['color']}"?>">
                 <img class="course-img" src="assets/pexels-julia-m-cameron-4144294(1).jpg">
-                <?php echo "<a class=\"course-name\" href=\"?page=courses&cid={$c['id']}\">{$c['name']} </a>" ?>
-                <span class="course-students"><?php echo "$count Members"?></span>
+                <div class="course-text">
+                    <?php echo "<a class=\"course-name\" href=\"?page=courses&cid={$c['id']}\">{$c['name']} </a>" ?>
+                    <span class="course-students"><?php echo "$count Members"?></span>
+                </div>
             </div>
             <?php endforeach; ?>
         </div>
