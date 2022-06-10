@@ -290,7 +290,7 @@ hr{
 }
 
 .footer-area img{
-    width: 80%;
+    height: 100%;
 }
 
 .footer-links{
@@ -361,7 +361,7 @@ hr{
     position: relative;
     width: 100%;
     display: grid;
-    grid-template-columns: min-content [day-bar-start] repeat(5, 1fr) [day-bar-end];
+    grid-template-columns: min-content [day-bar-start] repeat(15, 1fr) [day-bar-end];
     grid-template-rows: [header] 1rem repeat(7, 2rem);
     row-gap: 0.5rem;
 }
@@ -410,6 +410,7 @@ hr{
 .calendar-header-marking {
     flex: 1 0 auto;
     font-size: x-small;
+    grid-column: span 3;
 }
 
 .calendar-header-vbar {
@@ -420,6 +421,11 @@ hr{
     grid-column: var(--vbar-col);
     grid-row: 2 / -1;
     background-color: grey;
+}
+
+.subdued {
+    background-color: lightgrey;
+    transform: scaleY(0.9);
 }
 
 .tooltip-text {

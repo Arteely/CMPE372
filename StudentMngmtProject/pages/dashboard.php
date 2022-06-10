@@ -123,13 +123,23 @@ END;
                 <div class="calendar-header-marking">07:00</div>
                 <div class="calendar-header-vbar" style="--vbar-col:2"></div>
                 <div class="calendar-header-marking">10:00</div>
-                <div class="calendar-header-vbar" style="--vbar-col:3"></div>
-                <div class="calendar-header-marking">13:00</div>
-                <div class="calendar-header-vbar" style="--vbar-col:4"></div>
-                <div class="calendar-header-marking">16:00</div>
                 <div class="calendar-header-vbar" style="--vbar-col:5"></div>
+                <div class="calendar-header-marking">13:00</div>
+                <div class="calendar-header-vbar" style="--vbar-col:8"></div>
+                <div class="calendar-header-marking">16:00</div>
+                <div class="calendar-header-vbar" style="--vbar-col:11"></div>
                 <div class="calendar-header-marking">19:00</div>
-                <div class="calendar-header-vbar" style="--vbar-col:6"></div>
+                <div class="calendar-header-vbar subdued" style="--vbar-col:14"></div>
+                <div class="calendar-header-vbar subdued" style="--vbar-col:3"></div>
+                <div class="calendar-header-vbar subdued" style="--vbar-col:4"></div>
+                <div class="calendar-header-vbar subdued" style="--vbar-col:6"></div>
+                <div class="calendar-header-vbar subdued" style="--vbar-col:7"></div>
+                <div class="calendar-header-vbar subdued" style="--vbar-col:9"></div>
+                <div class="calendar-header-vbar subdued" style="--vbar-col:10"></div>
+                <div class="calendar-header-vbar subdued" style="--vbar-col:12"></div>
+                <div class="calendar-header-vbar subdued" style="--vbar-col:13"></div>
+                <div class="calendar-header-vbar subdued" style="--vbar-col:15"></div>
+                <div class="calendar-header-vbar subdued" style="--vbar-col:16"></div>
                 <?php
                     $d = clone $w_start;
                     for($i = 0; $i < 7; $i++) {
