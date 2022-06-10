@@ -88,26 +88,26 @@
             <div class="main-content-area">
                 <div class="main-content-body">
                     <?php require_once($page_path); ?>
-                </div>
-                <div class="footer-container">
-                    <div class="footer-area">
+
+                    <div class="footer-container">
+                        <div class="footer-area">
                             <img src="assets/casara-logo-white-selfmade.png">
-                    </div>
-                    <div class="footer-area">
-                        <ul class="footer-links">
-                            <li class="footer-link">
-                                <a href="#">Dashboard</a>
-                            </li>
-                            <li class="footer-link">
-                                <a href="#">Lessons</a>
-                            </li>
-                            <li class="footer-link">
-                                <a href="#">Students</a>
-                            </li>
-                            <li class="footer-link">
-                                <a href="#">Announcements</a>
-                            </li>
-                        </ul>
+                        </div>
+                        <div class="footer-area">
+                            <ul class="footer-links">
+                                <li class="footer-link">
+                                    <a href="#">Dashboard</a>
+                                </li>
+                                <li class="footer-link">
+                                    <a href="#">Lessons</a>
+                                </li>
+                                <li class="footer-link">
+                                    <a href="#">Students</a>
+                                </li>
+                                <li class="footer-link">
+                                    <a href="#">Announcements</a>
+                                </li>
+                            </ul>
                     </div>
                     <div class="footer-area flex-right">
                         <div class="footer-logout">
@@ -115,6 +115,7 @@
                             <span class="footer-link"><a href="index.php?logout='1'">Log Out</a></span>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
