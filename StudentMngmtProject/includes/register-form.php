@@ -10,7 +10,6 @@ if(!isset($_POST['register_user']) && !isset($_POST['login_user'])) {
     goto done;
 }
 
-
 require_once('connect.php');
 
 if($db_cxn === false) {
@@ -67,7 +66,9 @@ if (isset($_POST['register_user'])) {
     }
 
     $last = mysqli_insert_id($db_cxn);
-    $query = "SELECT * FROM users WHERE id='$last'";
+    $query = "SELECT users.*, faculties.name AS faculty_name FROM users
+        INNER JOIN faculties ON users.faculty_ref = faculties.id
+        WHERE id='$last'";
     $result = mysqli_query($db_cxn, $query);
     if($result == false) {
         array_push($error_array, "Database error");
@@ -92,7 +93,9 @@ else if (isset($_POST['login_user'])) {
     }
 
     $password = md5($password);
-    $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+    $query = "SELECT users.*, faculties.name AS faculty_name FROM users
+        INNER JOIN faculties ON users.faculty_ref = faculties.id
+        WHERE username='$username' AND password='$password'";
     $results = mysqli_query($db_cxn, $query);
     if($results == false) {
         array_push($error_array, "Couldn't SELECT");

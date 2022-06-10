@@ -36,7 +36,7 @@
                     <img src="assets/casara-logo-white-selfmade.png">
 
                     <span class="navbar-user-text">Welcome! <?php echo "{$USER['name']}" ?></span>
-                    <span class="navbar-user-text">Faculty of Business</span>
+                    <span class="navbar-user-text">Faculty of <?php echo "{$USER['faculty_name']}" ?></span>
                 </div>
                 <hr class="sidebar-divide">
                 <ul class="side-menu-links">
@@ -47,7 +47,7 @@
                         </a>
                     </li>
                     <li class="side-menu-button <?php echo $page == "lessons" ? "selected" : ""; ?>">
-                        <a href="index.php?page=courses">
+                        <a href="index.php?page=lessons">
                             <img class="side-menu-button-image" src="assets/icons/check-solid.svg">
                             <span class="side-menu-button-text">Lessons</span>
                         </a>
