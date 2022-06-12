@@ -60,7 +60,7 @@
                         </a>
                     </li>
                     <li class="side-menu-button <?php echo $page == "settings" ? "selected" : ""; ?>">
-                        <a href="#">
+                        <a href="index.php?page=settings">
                             <img class="side-menu-button-image" src="assets/icons/sliders-solid.svg">
                             <span class="side-menu-button-text">Settings</span>
                         </a>
