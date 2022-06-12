@@ -1,4 +1,12 @@
 <?php include('includes/register-form.php') ?>
+<?php
+    $query = mysqli_query($db_cxn, "SELECT * FROM faculties");
+    $faculties = [];
+    while($row = mysqli_fetch_assoc($query)) {
+        $faculties[$row['id']] = $row;
+    }
+?>
+
 
 <html lang="en-gb">
     <head>
@@ -38,6 +46,14 @@
                             <div class="form-input">
                                 <label for="faculty_id" class="form-label">Student/Faculty ID</label>
                                 <input name="faculty_id" class="form-input-label" type="number" placeholder="12345678" required>
+                            </div>
+                            <div class="form-input fi-select">
+                                <label for="faculty" class="form-label">Faculty</label>
+                                <select id="faculty" name="faculty">
+                                    <?php foreach($faculties as $k=>$v) {
+                                        echo "<option value='$k'>{$v['name']}</option>";
+                                    } ?>
+                                </select>
                             </div>
                             <div class="form-input">
                                 <label for="username" class="form-label">E-Mail</label>
