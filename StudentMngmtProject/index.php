@@ -22,7 +22,7 @@
 
 <html lang="en-gb">
     <head>
-        <title>CASARA SIS</title>
+        <title>CASARA-SIS</title>
         <link rel="stylesheet" href="stylesheet.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
