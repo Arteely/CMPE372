@@ -43,7 +43,7 @@ foreach ($courses_m as &$c) {
                     <span class="instructor-faculty">Online (Zoom)</span>
                 </div>
                 <div class="lesson-link">
-                    <form action="<?php echo "index.php?page=courses&cid={$c['id']}"?>">
+                    <form method="POST" action="?page=courses&cid=<?php echo "{$c['id']}"?>">
                         <button>View Class</button>
                     </form>
                 </div>
