@@ -1,76 +1,77 @@
 <script src="pages/dashboard.js"></script>
 
 <?php
-    $today = new DateTimeImmutable("today");
-    if (!isset($_GET['week']))
-    {
-        $curr_w = intval($today->format("W"));
-        echo <<<END
+$today = new DateTimeImmutable("today");
+if (!isset($_GET['week'])) {
+    $curr_w = intval($today->format("W"));
+    echo <<<END
         <script>
             gotoWeek($curr_w, true);
         </script>
 END;
-    }
+}
 ?>
 
 <?php
-    require_once("includes/db-conv.php");
-    static $colors = ['#203C56', '#544E68', '#8D697A', "#DD8159", "#FDAA5E"];
+require_once("includes/db-conv.php");
+static $colors = ['#203C56', '#544E68', '#8D697A', "#DD8159", "#FDAA5E"];
 
-    $query = mysqli_query($db_cxn , "SELECT * FROM courses WHERE teacher_id='{$USER['id']}'");
-    $courses_m = mysqli_fetch_all($query , MYSQLI_ASSOC);
+$query = mysqli_query($db_cxn, "SELECT * FROM courses WHERE teacher_id='{$USER['id']}'");
+$courses_m = mysqli_fetch_all($query, MYSQLI_ASSOC);
 
-    $i = 0;
-    $courses = [];
-    foreach($courses_m as &$c){
-        $query = mysqli_query($db_cxn , "SELECT * FROM students_courses WHERE course_id='{$c['id']}'");
-        $students = mysqli_fetch_all($query , MYSQLI_ASSOC);
-        $c['students'] = $students;
-        $c['color'] = $colors[$i % count($colors)];
-        $i++;
+$i = 0;
+$courses = [];
+foreach ($courses_m as &$c) {
+    $query = mysqli_query($db_cxn, "SELECT * FROM students_courses WHERE course_id='{$c['id']}'");
+    $students = mysqli_fetch_all($query, MYSQLI_ASSOC);
+    $c['students'] = $students;
+    $c['color'] = $colors[$i % count($colors)];
+    $i++;
 
-        $courses[$c['id']] = $c;
-    }
+    $courses[$c['id']] = $c;
+}
 
-    $thisyear = intval($today->format("o"));
-    $w_desired = $_GET['week'];
+$thisyear = intval($today->format("o"));
+$w_desired = $_GET['week'];
 
-    $w_start = new DateTime();
-    $w_start->setISODate($thisyear, $w_desired);
-    $w_start->setTime(0, 0);
-    $w_end = clone $w_start;
-    $w_end->add(new DateInterval("P7D"));
+$w_start = new DateTime();
+$w_start->setISODate($thisyear, $w_desired);
+$w_start->setTime(0, 0);
+$w_end = clone $w_start;
+$w_end->add(new DateInterval("P7D"));
 
-    $w_endm1 = clone $w_end;
-    $w_endm1->sub(new DateInterval("P1D"));
+$w_endm1 = clone $w_end;
+$w_endm1->sub(new DateInterval("P1D"));
 
-    $w_start_m = $w_start->format("Y-m-d H:i:s");
-    $w_end_m = $w_end->format("Y-m-d H:i:s");
+$w_start_m = $w_start->format("Y-m-d H:i:s");
+$w_end_m = $w_end->format("Y-m-d H:i:s");
 
-    $query = mysqli_query($db_cxn,
-        "SELECT * FROM lectures
+$query = mysqli_query(
+    $db_cxn,
+    "SELECT * FROM lectures
             INNER JOIN courses ON lectures.course_id = courses.id
             WHERE courses.teacher_id = '{$USER['id']}'
-            AND (lectures.start BETWEEN '$w_start_m' AND '$w_end_m')");
-    $lectures = mysqli_fetch_all($query, MYSQLI_ASSOC);
+            AND (lectures.start BETWEEN '$w_start_m' AND '$w_end_m')"
+);
+$lectures = mysqli_fetch_all($query, MYSQLI_ASSOC);
 
-    $l_by_date = [];
-    foreach($lectures as &$l) {
-        $l['start'] = new DateTimeImmutable($l['start']);
-        $l['end'] = new DateTimeImmutable($l['end']);
-        $l['duration_s'] = $l['end']->getTimestamp() - $l['start']->getTimestamp();
-        $date = $l['start']->format("Y-m-d");
-        if (!isset($l_by_date[$date]))
-            $l_by_date[$date] = array();
-        $l_by_date[$date][] = $l;
-    }
+$l_by_date = [];
+foreach ($lectures as &$l) {
+    $l['start'] = new DateTimeImmutable($l['start']);
+    $l['end'] = new DateTimeImmutable($l['end']);
+    $l['duration_s'] = $l['end']->getTimestamp() - $l['start']->getTimestamp();
+    $date = $l['start']->format("Y-m-d");
+    if (!isset($l_by_date[$date]))
+        $l_by_date[$date] = array();
+    $l_by_date[$date][] = $l;
+}
 ?>
 
 <div class="dashboard-body">
     <div class="greet-search-area">
         <div class="user-greet">
             <span class="greet-title-text"><?php echo "{$USER['name']} {$USER['surname']}" ?></span>
-            <span class="greet-text">Good Afternoon, you have no upcoming lessons today!</span>
+            <span class="greet-text">Good Day, here is a summary of your upcoming lessons!</span>
         </div>
         <div class="search-bar">
             <img class="search-icon" src="assets/icons/magnifying-glass-solid.svg">
@@ -87,15 +88,15 @@ END;
             <span class="greet-text">Take a look at the lessons you have.</span>
         </div>
         <div class="your-courses">
-            <?php foreach($courses as $c): ?>
-            <?php $count = count($c['students']); ?>
-            <div class="course" style="<?php echo "--col: {$c['color']}"?>">
-                <img class="course-img" src="assets/pexels-julia-m-cameron-4144294(1).jpg">
-                <div class="course-text">
-                    <?php echo "<a class=\"course-name\" href=\"?page=courses&cid={$c['id']}\">{$c['name']} </a>" ?>
-                    <span class="course-students"><?php echo "$count Members"?></span>
+            <?php foreach ($courses as $c) : ?>
+                <?php $count = count($c['students']); ?>
+                <div class="course" style="<?php echo "--col: {$c['color']}" ?>">
+                    <img class="course-img" src="assets/pexels-julia-m-cameron-4144294(1).jpg">
+                    <div class="course-text">
+                        <?php echo "<a class=\"course-name\" href=\"?page=courses&cid={$c['id']}\">{$c['name']} </a>" ?>
+                        <span class="course-students"><?php echo "$count Members" ?></span>
+                    </div>
                 </div>
-            </div>
             <?php endforeach; ?>
         </div>
     </div>
@@ -141,28 +142,28 @@ END;
                 <div class="calendar-header-vbar subdued" style="--vbar-col:15"></div>
                 <div class="calendar-header-vbar subdued" style="--vbar-col:16"></div>
                 <?php
-                    $d = clone $w_start;
-                    for($i = 0; $i < 7; $i++) {
-                        echo "<div class=\"calendar-day-name\">{$d->format("l")}</div>";
-                        echo "<div class=\"calendar-day-bar\">";
-                        $d_key = $d->format("Y-m-d");
-                        if(array_key_exists($d_key, $l_by_date)) {
-                            foreach($l_by_date[$d_key] as $l) {
-                                $l_type = db_l_type_enum_to_human($l['course_type']);
-                                $l_plen = $l['duration_s'] / 540;
-                                $l_startpos = ($l['start']->getTimestamp() - $d->getTimestamp() - 25200) / 540;
-                                $col = $courses[$l['course_id']]['color'];
-                                echo <<<END
+                $d = clone $w_start;
+                for ($i = 0; $i < 7; $i++) {
+                    echo "<div class=\"calendar-day-name\">{$d->format("l")}</div>";
+                    echo "<div class=\"calendar-day-bar\">";
+                    $d_key = $d->format("Y-m-d");
+                    if (array_key_exists($d_key, $l_by_date)) {
+                        foreach ($l_by_date[$d_key] as $l) {
+                            $l_type = db_l_type_enum_to_human($l['course_type']);
+                            $l_plen = $l['duration_s'] / 540;
+                            $l_startpos = ($l['start']->getTimestamp() - $d->getTimestamp() - 25200) / 540;
+                            $col = $courses[$l['course_id']]['color'];
+                            echo <<<END
                                 <div class="calendar-day-bar-inner tooltip" style="--p-startpos: $l_startpos%; --p-len: $l_plen%; --col: $col">
                                 <p>{$l['name']}</p>
                                 <span class="tooltip-text">{$l['name']} $l_type</span>
                                 </div>
                                 END;
-                            }
                         }
-                        $d->add(new DateInterval("P1D"));
-                        echo "</div>";
                     }
+                    $d->add(new DateInterval("P1D"));
+                    echo "</div>";
+                }
                 ?>
             </div>
         </div>

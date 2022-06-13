@@ -664,6 +664,13 @@ hr{
     grid-auto-rows: min-content;
 }
 
+.students-grid{
+    display: grid;
+    padding: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-auto-rows: min-content;
+}
+
 .announcement-section {
     display: flex;
     flex: 1;
