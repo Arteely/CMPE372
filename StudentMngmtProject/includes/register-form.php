@@ -5,12 +5,12 @@ if(isset($_SESSION['user'])) {
     header('location: index.php?page=dashboard');
 }
 
+require_once('connect.php');
+
 $error_array = array();
 if(!isset($_POST['register_user']) && !isset($_POST['login_user'])) {
     goto done;
 }
-
-require_once('connect.php');
 
 if($db_cxn === false) {
     array_push($error_array, "ERROR: Could not connect to " . mysqli_connect_error());
@@ -24,6 +24,7 @@ if (isset($_POST['register_user'])) {
     $password = mysqli_real_escape_string($db_cxn, $_POST['password']);
     $password_confirmation = mysqli_real_escape_string($db_cxn, $_POST['password_confirmation']);
     $faculty_id = mysqli_real_escape_string($db_cxn, $_POST['faculty_id']);
+    $faculty_ref = intval($_POST['faculty']);
 
     if (empty($name)) {
         array_push($error_array, "Please enter your Name"); }
@@ -46,7 +47,7 @@ if (isset($_POST['register_user'])) {
 
     $dupe_check = mysqli_query($db_cxn, "SELECT * FROM users WHERE username='$username' LIMIT 1");
     if($dupe_check == false) {
-        array_push($error_array, "Database error");
+        array_push($error_array, "Database error, dupe check fail");
         goto done;
     }
 
@@ -57,21 +58,21 @@ if (isset($_POST['register_user'])) {
 
     $encrypted_password = md5($password);
 
-    $query = "INSERT INTO users (name, surname, username, faculty_id, password)
-        VALUES('$name', '$surname', '$username', '$faculty_id', '$encrypted_password')";
+    $query = "INSERT INTO users (name, surname, username, faculty_id, faculty_ref, password)
+        VALUES('$name', '$surname', '$username', '$faculty_id', $faculty_ref, '$encrypted_password')";
     $result = mysqli_query($db_cxn, $query);
     if($result == false) {
-        array_push($error_array, "Database error");
+        array_push($error_array, "Database error, can't insert user");
         goto done;
     }
 
     $last = mysqli_insert_id($db_cxn);
     $query = "SELECT users.*, faculties.name AS faculty_name FROM users
         INNER JOIN faculties ON users.faculty_ref = faculties.id
-        WHERE id='$last'";
+        WHERE users.id='$last'";
     $result = mysqli_query($db_cxn, $query);
     if($result == false) {
-        array_push($error_array, "Database error");
+        array_push($error_array, "Database error, can't find user $last");
         goto done;
     }
 
