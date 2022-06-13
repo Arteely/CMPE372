@@ -802,3 +802,71 @@ a.lecture-body-topic {
     color: black;
     text-decoration: none;
 }
+
+.lessons-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.lesson-details{
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.lesson-details div{
+    margin: auto;
+}
+
+.lessons{
+    margin: 25px 25px 0 25px;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 25px;
+}
+
+.lesson-image{
+    background-color: #252525;
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.lesson-image span{
+    align-self: center;
+}
+
+.lesson-name{
+    flex: 2;
+    padding-left: 1rem;
+}
+
+.lesson-students, .lesson-link{
+    flex: 1;
+}
+
+.lesson-link{
+    display: flex;
+    justify-content: center;
+}
+
+
+.lesson-link button{
+    height: 3rem;
+    width: 6rem;
+    color: white;
+    background-color: #252525;
+    border-radius: 15px;
+    border: none;
+    transition: 0.2s ease;
+}
+
+.lesson-link button:hover{
+    background-color: #3A3A3A;
+    transition: 0.2s ease;
+}
